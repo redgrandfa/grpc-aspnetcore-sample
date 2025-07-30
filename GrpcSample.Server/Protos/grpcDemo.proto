@@ -1,0 +1,39 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "GrpcSample"; // it will be better to choose the mutual prefix of Server/ Client Projects.
+
+// package GrpcDemo;   // it's useless for C#.
+
+// service definition.
+service GrpcDemo {
+  // Type1: Unary (Single Request / Single Response)
+  rpc Echo (Message) returns (Message);
+
+  // Type2: Server Streaming
+  rpc CountDown (CountDownRequest) returns (stream Message);
+
+  // Type3: Bidirectional Streaming
+  rpc EchoChat (stream Message) returns (stream Message);
+}
+
+message Message {
+  string text = 1;
+}
+
+message CountDownRequest {}
+
+// bool
+// string
+// Int32
+// bytes 任意二進位資料 => byte[]
+
+// message	=> class
+// enum Status {
+//   UNKNOWN = 0;
+//   ACTIVE = 1;
+//   INACTIVE = 2;
+// }
+
+// optional T
+// repeated T => Google.Protobuf.Collections.RepeatedField<T>
+
